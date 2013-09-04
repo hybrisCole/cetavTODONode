@@ -22,14 +22,23 @@ module.exports = function(app,config){
 
   //CORS middleware
   var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*'); //TODO: Agregar lista de urls Validos nada mas, ese * es demasiiiiiado peligroso.
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
   }
 
   app.configure(function () {
-
+    //CORS y evitando el metodo OPTIONS
+    app.use(allowCrossDomain).options('*', function(req, res, next){
+      res.end();
+    });
     app.use(express.cookieParser('C3T1V'));
 
     app.use(express.bodyParser());
@@ -44,11 +53,6 @@ module.exports = function(app,config){
     }));
 
     app.use(flash());
-
-    //CORS y evitando el metodo OPTIONS
-    app.use(allowCrossDomain).options('*', function(req, res, next){
-      res.end();
-    });
 
     app.use(app.router);
 
