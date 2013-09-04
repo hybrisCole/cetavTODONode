@@ -50,7 +50,9 @@ module.exports = function(app,config){
     app.use(flash());
 
     //CORS y evitando el metodo OPTIONS
-    app.use(allowCrossDomain);
+    app.use(allowCrossDomain).options('*', function(req, res, next){
+      res.end();
+    });
 
     app.use(app.router);
 
