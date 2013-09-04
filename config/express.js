@@ -35,6 +35,7 @@ module.exports = function(app,config){
   }
 
   app.configure(function () {
+    //El orden de llamados de todo lo que hay aqui es muy importante D: D: D:
     app.use(express.bodyParser());
     //CORS y evitando el metodo OPTIONS
     app.use(allowCrossDomain).options('*', function(req, res, next){
