@@ -28,7 +28,7 @@ exports.findById = function(req, res){
 };
 
 exports.update = function(req,res){
-  Todo.findByIdAndUpdate(req.body._id,req.body,function(err,numAfected){
+  Todo.findByIdAndUpdate(req.body._id,req.body,function(err,numAffected){
     if(err){res.jsonp({error:err})}
     res.jsonp({numAffected:numAffected});
   });
