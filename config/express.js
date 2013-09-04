@@ -21,15 +21,11 @@ module.exports = function(app,config){
   app.set('view engine', 'jade');
 
   //CORS middleware
-  var allowCrossDomain    = function(req, res, next){
-    res.header('Access-Control-Allow-Origin', '*' );
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*'); //TODO: Agregar lista de urls Validos nada mas, ese * es demasiiiiiado peligroso.
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
-    if( 'OPTIONS' == req.method ){
-      res.send(200);
-    }else{
-      next();
-    }
+    next();
   }
 
   app.configure(function () {
