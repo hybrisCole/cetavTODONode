@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
   Todo = mongoose.model('Todo');
 
 exports.add = function(req, res){
+  console.log(req.body);
   var todo = new Todo(req.body);
   todo.save(function(err){
     var response = {status:'OK'};

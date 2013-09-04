@@ -35,15 +35,13 @@ module.exports = function(app,config){
   }
 
   app.configure(function () {
+    app.use(express.bodyParser());
     //CORS y evitando el metodo OPTIONS
     app.use(allowCrossDomain).options('*', function(req, res, next){
       res.end();
     });
     app.use(express.cookieParser('C3T1V'));
-
-    app.use(express.bodyParser());
     app.use(express.methodOverride());
-
     app.use(express.session({
       secret: 'C3T1V',
       store: new mongoStore({
