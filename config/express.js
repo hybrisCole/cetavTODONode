@@ -38,9 +38,7 @@ module.exports = function(app,config){
     //El orden de llamados de todo lo que hay aqui es muy importante D: D: D:
     app.use(express.bodyParser());
     //CORS y evitando el metodo OPTIONS
-    app.use(allowCrossDomain).options('*', function(req, res, next){
-      res.end();
-    });
+    app.use(allowCrossDomain);
     app.use(express.cookieParser('C3T1V'));
     app.use(express.methodOverride());
     app.use(express.session({
