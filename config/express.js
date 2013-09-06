@@ -57,7 +57,7 @@ module.exports = function(app,config){
     app.use(app.router);
 
     app.use(function(err, req, res, next){
-      if (~err.message.indexOf('not found')){
+      if (err.message.indexOf('not found')){
         return next();
       }
 
