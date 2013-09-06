@@ -23,7 +23,7 @@ module.exports = function(app,config){
   //CORS middleware
   var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     // intercept OPTIONS method
     if ('OPTIONS' == req.method) {
@@ -37,8 +37,6 @@ module.exports = function(app,config){
   app.configure(function () {
     //El orden de llamados de todo lo que hay aqui es muy importante D: D: D:
     app.use(express.bodyParser());
-    //CORS y evitando el metodo OPTIONS
-    app.use(allowCrossDomain);
     app.use(express.cookieParser('C3T1V'));
     app.use(express.methodOverride());
     app.use(express.session({
@@ -50,6 +48,11 @@ module.exports = function(app,config){
     }));
 
     app.use(flash());
+
+    //CORS y evitando el metodo OPTIONS
+    app.use(allowCrossDomain).options('*', function(req, res, next){
+      res.end();
+    });
 
     app.use(app.router);
 
