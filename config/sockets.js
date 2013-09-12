@@ -16,7 +16,7 @@ module.exports = function (io) {
       socket_list[data.usuarioDestinatario].emit('chat:whisper', {cuerpo: data.mensaje, usuario: socket.nickname});
     });
     socket.on('chat:todos',function(data){
-      io.sockets.emit('chat:mensaje', {cuerpo: data.cuerpo, usuario: data.usuario});
+      io.sockets.emit('chat:mensaje', {cuerpo: data.mensaje, usuario: data.usuario});
     });
   });
 }
