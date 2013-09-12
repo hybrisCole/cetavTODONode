@@ -4,7 +4,8 @@
  */
 
 var express = require('express')
-  , fs = require('fs');
+  , fs = require('fs')
+  , socket = require('socket.io');
 
 /**
  * Main application entry file.
@@ -35,7 +36,11 @@ require('./config/routes')(app);
 
 // Start the app by listening on <port>
 var port = process.env.PORT || 3000,
-  server = app.listen(port)
+  server = app.listen(port);
+
+//Setting up socket.io
+var io = socket.listen(server);
+    require('./config/sockets')(io);
 
 console.log('OK! Corriendo CETAV Node en ====> '+port);
 

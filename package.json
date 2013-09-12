@@ -13,7 +13,8 @@
     "connect-mongo": "0.3.2",
     "connect-flash": "0.1.0",
     "lodash": "1.2.1",
-    "credential": "0.2.1"
+    "credential": "0.2.1",
+    "socket.io": "0.9.16"
   },
   "maintainers": [
     {
