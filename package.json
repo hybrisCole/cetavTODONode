@@ -1,7 +1,7 @@
 {
   "name": "Cetav_NODE",
   "description": "Este es el REST para la clase de CETAV",
-  "version": "0.0.1-24",
+  "version": "0.0.1-26",
   "private": true,
   "scripts": {
     "start": "node app.js"
