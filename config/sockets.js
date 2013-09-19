@@ -12,10 +12,10 @@ module.exports = function (io) {
       socket.emit('chat:lista',Object.keys(socket_list));
     });
     socket.on('chat:susurro',function(data){
-      socket_list[data.usuarioDestinatario].emit('chat:whisper', {cuerpo: data.mensaje, usuario: socket.nickname});
+      socket_list[data.usuarioDestinatario].emit('chat:whisper', {cuerpo: data.mensaje, usuario: socket.nickname, fecha: new Date()});
     });
     socket.on('chat:todos',function(data){
-      io.sockets.emit('chat:mensaje', {cuerpo: data.mensaje, usuario: data.usuario});
+      io.sockets.emit('chat:mensaje', {cuerpo: data.mensaje, usuario: data.usuario, fecha: new Date()});
     });
     socket.on('chat:lista',function(callback){
       callback(Object.keys(socket_list));
