@@ -12,7 +12,7 @@ module.exports = function (io) {
       socket.emit('chat:lista',Object.keys(socket_list));
     });
     socket.on('chat:susurro',function(data){
-      socket_list[data.usuarioDestinatario].emit('chat:whisper', {cuerpo: data.mensaje, usuario: socket.nickname, fecha: new Date()});
+      socket_list[data.usuarioDestinatario].emit('chat:whisper', {cuerpo: '['+socket.nickname+']'+data.mensaje, usuario: socket.nickname, fecha: new Date()});
     });
     socket.on('chat:todos',function(data){
       io.sockets.emit('chat:mensaje', {cuerpo: data.mensaje, usuario: data.usuario, fecha: new Date()});
